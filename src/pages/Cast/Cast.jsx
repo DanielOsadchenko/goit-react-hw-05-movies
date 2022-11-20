@@ -5,7 +5,7 @@ import { CastCard } from "components/CastCard/CastCard";
 import { Gallery } from "components/Gallery/Gallery";
 
 export default function Cast() {
-  const [actors, setActors] = useState(null);
+  const [actors, setActors] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Cast() {
 
   return <div>
     <Gallery>
-      {!actors && <p>Sorry! We have no information about the actors.</p>}
+      {actors.length === 0 && <p>Sorry! We have no information about the actors.</p>}
       {actors && actors.map(({id, profile_path, name, character}) => {
         return <CastCard key={id}
           poster={profile_path}
