@@ -3,25 +3,34 @@ import { getFilmByQuery } from "components/API";
 import { FilmCard } from "components/FilmCard/FilmCard";
 import { Gallery } from "components/Gallery/Gallery";
 import { SearchForm } from "components/SearchForm/SearchForm";
+import { useSearchParams } from "react-router-dom";
 
 
-export const Movies = () => {
-  const [inputQuery, setInputQuery] = useState('');
+export default function Movies() {
   const [page, setPage] = useState(1);
   const [films, setFilms] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    if (inputQuery.trim() !== '') {
-      getFilmByQuery(page, inputQuery).then((films) => setFilms(films.results))
+    if (query) {
+      getFilmByQuery(page, query).then((films) => {
+        setFilms(films.results);
+        setTotalPages(films.total_pages);})
     }
-  }, [inputQuery, page])
+  }, [page, query])
   
+  const changeUrl = params => {
+    setSearchParams(params !== '' ? { query: params } : {})
 
+  }
 
   return <div>
-    <SearchForm onSubmit={setInputQuery}/>
+    <SearchForm onSubmit={changeUrl}/>
     <Gallery>
-      {films.map(({ title, poster_path, id, name }) => {
+      {films && films.map(({ title, poster_path, id, name }) => {
+        window.scrollBy(0,-200);
       return <FilmCard key={id}
         name={name}
         title={title}
@@ -29,5 +38,12 @@ export const Movies = () => {
         poster={poster_path}
         />})}
     </Gallery>
+    <div>
+      {page > 1 && <button type="button" onClick={() => { setPage(prev => prev - 1) }}>Previous Page</button>}
+    <p>Page: {page}</p>
+      {totalPages > 1 && <button type="button" onClick={() => { setPage(prev => prev + 1)}}>Next Page</button>}
+    </div>
+    
+    
   </div>
 }

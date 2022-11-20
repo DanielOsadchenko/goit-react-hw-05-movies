@@ -3,7 +3,7 @@ import { getTrends} from "components/API";
 import { FilmCard } from "components/FilmCard/FilmCard";
 import { Gallery } from "components/Gallery/Gallery";
 
-export const Home = () => {
+export default function Home() {
   const [trends, setTrends] = useState();
   
 

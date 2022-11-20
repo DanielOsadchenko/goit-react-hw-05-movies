@@ -16,3 +16,13 @@ export async function getFilmById(id) {
   const res = await fetch(`${URL}/movie/${id}?api_key=${API_KEY}`);
   return await res.json();
 }
+
+export async function getCastById(id) {
+  const res = await fetch(`${URL}/movie/${id}/credits?api_key=${API_KEY}`);
+  return await res.json();
+}
+
+export async function getReviewsById(id) {
+  const res = await fetch(`${URL}/movie/${id}/reviews?api_key=${API_KEY}`);
+  return await res.json();
+}
