@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getTrends} from "components/API";
 import { FilmCard } from "components/FilmCard/FilmCard";
 import { Gallery } from "components/Gallery/Gallery";
+import { Title, Container } from "./Home.styled";
 
 export default function Home() {
   const [trends, setTrends] = useState();
@@ -11,8 +12,8 @@ export default function Home() {
     getTrends().then(films => setTrends(films.results))
   }, [])
 
-  return <div>
-    <h2>The best films of today</h2>
+  return <Container>
+    <Title>Trending films</Title>
     <Gallery>
       {trends && trends.map(({ title, poster_path, id, name }) => {
       return <FilmCard key={id}
@@ -23,6 +24,6 @@ export default function Home() {
     </Gallery>
     
   
-  </div>
+  </Container>
   
 }

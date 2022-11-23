@@ -3,7 +3,7 @@ export const API_KEY = '86ff1474d02492b68b238125fe79bb52';
 export const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
 export async function getTrends() {
-  const res = await fetch(`${URL}/trending/all/day?api_key=${API_KEY}`);
+  const res = await fetch(`${URL}/trending/movie/day?api_key=${API_KEY}`);
   return await res.json();
 }
 

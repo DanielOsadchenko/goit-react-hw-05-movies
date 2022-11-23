@@ -1,8 +1,9 @@
-import { useParams, Link, Outlet, useLocation } from "react-router-dom";
+import { useParams, Outlet, useLocation } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
 import { getFilmById } from "components/API";
 import { IMAGE_URL } from "components/API";
-import image from 'images/placeholder.jpg'
+import image from 'images/placeholder.jpg';
+import { Button, Container, InfoContainer, ButtonLink } from "./MovieDetails.styled";
 
 
 
@@ -37,33 +38,34 @@ export default function MovieDetails() {
   };
 
   return <div>
-    <Link to={location.state?.from ?? '/movies'}>Back</Link>
-    <div>
+    <Button to={location.state?.from ?? '/movies'}>Back</Button>
+    <Container>
       <img src={poster()} alt={film.title} />
-      <div>
+      <InfoContainer>
         <p><span>{film.title}{film.name}</span><span>{date()}</span></p>
 
         <p>{film.tagline}</p>
 
         <p><span>User Score:</span><span>{Math.round((film.vote_average / 10) * 100)}%</span></p>
 
-        <p>Overview</p>
-        <p>{film.overview}</p>
+        <p>Overview: {film.overview}</p>
+        
 
-        <p>Genres</p>
-        {film.genres && film.genres.map(genre => {
-          return <p key={genre.id}>{genre.name}</p>
-        })}
-      </div>
-
-      <div>
+        <p>Genres: {film.genres && film.genres.map(genre => {
+          return <span key={genre.id}>| {genre.name} | </span>
+        })}</p>
+        
+        <div>
         <p>Additional information</p>
-        <Link to={`/movies/${movieId}/Cast`}>Cast</Link>
-        <Link to={`/movies/${movieId}/Reviews`}>Reviews</Link>
+        <ButtonLink to={`/movies/${movieId}/Cast`}>Cast</ButtonLink>
+        <ButtonLink to={`/movies/${movieId}/Reviews`}>Reviews</ButtonLink>
       </div>
+      </InfoContainer>
+      </Container>
+      
       <Suspense fallback={null}>
         <Outlet/>
       </Suspense>
-    </div>
+    
   </div>;
 };

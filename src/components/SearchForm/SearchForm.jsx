@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState } from "react";
+import { Input, Button, Form } from "./SearchForm.styled";
 
 
-export const SearchForm = ({onSubmit}) => {
+export const SearchForm = ({onSubmit, }) => {
   const [inputQuery, setInputQuery] = useState('');
 
     const handleChange = (e) => {
@@ -10,20 +11,19 @@ export const SearchForm = ({onSubmit}) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    onSubmit(inputQuery)
-    setInputQuery('')
+    onSubmit(inputQuery);
   }
-  return <form onSubmit={formSubmit}>
+  return <Form onSubmit={formSubmit}>
       <label>
-        <input
+        <Input
           name="query"
           placeholder="write the name of the movie here"
           type="text"
           autoComplete="off"
           autoFocus
           onChange={handleChange}
-          value={inputQuery}></input>
+          value={inputQuery}></Input>
       </label>
-      <button type="submit">Search</button>
-    </form>
+      <Button type="submit">Search</Button>
+    </Form>
 }

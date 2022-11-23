@@ -1,13 +1,13 @@
 import { IMAGE_URL } from "components/API";
 import { Link, useLocation } from "react-router-dom";
-
+import { Item, Image, Title } from "./FilmCard.styled";
 
 export const FilmCard = ({ name, title, poster, id }) => {
   
   const location = useLocation();
-  return <li>
+  return <Item>
     <Link to={`/movies/${id}`} state={{from: location}}>
-      <p>{name}{title}</p>
-      <img src={`${IMAGE_URL}${poster}`} alt={title} />
+      <Title>{name}{title}</Title>
+      <Image src={`${IMAGE_URL}${poster}`} width='302px' alt={title} />
     </Link>
-      </li>}
+      </Item>}

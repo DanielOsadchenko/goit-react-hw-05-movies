@@ -1,5 +1,7 @@
-export const Gallery = ({children}) => {
-  return <ul>
+import { GalleryList } from "./Gallery.styled"
+
+export const Gallery = ({ children }) => {
+  return <GalleryList>
     {children}
-  </ul>
+  </GalleryList>
 }
