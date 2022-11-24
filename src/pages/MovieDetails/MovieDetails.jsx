@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import { getFilmById } from "components/API";
 import { IMAGE_URL } from "components/API";
 import image from 'images/placeholder.jpg';
-import { Button, Container, InfoContainer, ButtonLink } from "./MovieDetails.styled";
+import { Container, InfoContainer, ButtonLink } from "./MovieDetails.styled";
 
 
 
