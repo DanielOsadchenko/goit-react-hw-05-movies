@@ -38,7 +38,7 @@ export default function MovieDetails() {
   };
 
   return <div>
-    <Button to={location.state?.from ?? '/movies'}>Back</Button>
+    <ButtonLink to={location.state?.from ?? '/movies'}>Back</ButtonLink>
     <Container>
       <img src={poster()} alt={film.title} />
       <InfoContainer>
