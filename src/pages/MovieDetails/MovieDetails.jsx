@@ -57,8 +57,8 @@ export default function MovieDetails() {
         
         <div>
         <p>Additional information</p>
-        <ButtonLink to={`/movies/${movieId}/Cast`}>Cast</ButtonLink>
-        <ButtonLink to={`/movies/${movieId}/Reviews`}>Reviews</ButtonLink>
+          <ButtonLink to={`/movies/${movieId}/Cast`} state={{ from: location.state?.from ?? 'movies' }}>Cast</ButtonLink>
+        <ButtonLink to={`/movies/${movieId}/Reviews`} state={{ from: location.state?.from ?? 'movies' }}>Reviews</ButtonLink>
       </div>
       </InfoContainer>
       </Container>
