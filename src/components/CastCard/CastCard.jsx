@@ -1,5 +1,6 @@
 import { IMAGE_URL } from "components/API";
 import image from '../../images/persone.jpg';
+import { Item } from "./CastCard.styled";
 
 
 export const CastCard = ({ poster, name, character }) => {
@@ -10,9 +11,9 @@ export const CastCard = ({ poster, name, character }) => {
     }
     return image
   };
-  return <li>
+  return <Item>
     <img src={imageSrc()} alt={name} />
     <p>Name: {name}</p>
     <p> Character: {character}</p>
-</li>
+</Item>
 }

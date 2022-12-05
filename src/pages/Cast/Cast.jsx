@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { getCastById } from "components/API";
 import { useParams } from "react-router-dom";
 import { CastCard } from "components/CastCard/CastCard";
-import { Gallery } from "components/Gallery/Gallery";
+import { Gallery } from "./Cast.styled";
+
 
 export default function Cast() {
   const [actors, setActors] = useState([]);
